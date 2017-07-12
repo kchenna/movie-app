@@ -5,6 +5,7 @@ import { hashHistory } from 'react-router';
 import VideoReducer from './VideoReducer';
 
 const rootReducer = combineReducers({
+    routerReducer,
     VideoReducer
 });
 
