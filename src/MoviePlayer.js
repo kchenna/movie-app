@@ -2,6 +2,7 @@ import './player.css';
 import React, { Component, PropTypes } from 'react';
 import { Player } from 'video-react';
 import * as VideoApi from './VideoApi';
+import _ from 'lodash';
 
 export default class MoviePlayer extends Component {
 
@@ -18,11 +19,20 @@ export default class MoviePlayer extends Component {
   }
 
   componentDidMount(){
+    var self = this;
+    var metadata = _.find(this.props.track.movieLinkMetadata, 
+                    function(meta){ return meta.default === "true" });
 
-    VideoApi.getVideo(this.props.track.baseUrl)
+    VideoApi.getMovieUrl(
+        metadata.file,
+        this.props.track.baseUrl)
         .then(function(resp) {
               if(resp) {
                   console.log("resp ",resp);
+                  self.setState({
+                          url: resp
+                        });
+                  
               }
         }
     );
@@ -36,7 +46,7 @@ export default class MoviePlayer extends Component {
                     <div className="col col-sm-8 offset-sm-2">
                         <Player
                             poster={this.props.track.image}
-                            src={this.props.track.url} >
+                            src={this.state.url} >
                         </Player>
                     </div>
                 </div>

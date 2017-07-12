@@ -1,16 +1,8 @@
 import qwest from 'qwest';
 
-const api = {
-    baseUrl: 'https://chennakk.herokuapp.com/tamil/movies'
-};
+export const getVideos = (url) =>{
 
-
-export const getVideos = (pageno) =>{
-
-     return qwest.get(api.baseUrl, {
-              page: pageno,
-              ts : new Date().getTime()
-          }, {
+     return qwest.get(url, {}, {
               cache:true
           })
           .then(function(xhr, resp) {
@@ -20,15 +12,24 @@ export const getVideos = (pageno) =>{
 };
 
 
-export const getVideo = (url) =>{
+export const getMovieUrl = (playUrl,referredUrl) =>{
 
-     return qwest.get("https://chennakk.herokuapp.com/tamil/movie",{
-         url:url
-     },{
-         cache:true
+    var request = new Request('http://chennakk.herokuapp.com/tamil/movie', {
+	method: 'POST', 
+	mode: 'cors',
+    headers: new Headers({'content-type': 'application/json'}),
+    body: JSON.stringify({playUrl:playUrl,referredUrl:referredUrl})
+});
+
+    return fetch(request).then(function(resp) { 
+        return (resp.text());
+     });
+     /*return qwest.post("http://localhost:8080/tamil/movie",{
+         playUrl:playUrl,
+         referredUrl:referredUrl
      })
           .then(function(xhr, resp) {
               return resp;
-          });
+          })*/
 
 };

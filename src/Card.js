@@ -23,7 +23,7 @@ export default class Card extends Component {
 
     return (
             <div className="track" onClick={onItemTouchTap} >
-                <img  src={this.props.track.image} width="150" height="150" />
+                <img  src={this.props.track.poster} width="150" height="150" />
                 <p className="title" title={this.props.track.title}>{this.props.track.title}</p>
             </div>
     );

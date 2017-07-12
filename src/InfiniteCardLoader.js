@@ -18,7 +18,8 @@ class InfiniteCardLoader extends Component {
         this.state = {
             tracks: [],
             hasMoreItems: true,
-            nextHref: null,
+            count:0,
+            nextUrl: undefined,
             pageno : 0
         };
     }
@@ -26,12 +27,13 @@ class InfiniteCardLoader extends Component {
     loadItems(page) {
       var self = this;
 
-      var pageno = 1;
-      if(this.state.pageno > 1) {
-          pageno = this.state.pageno;
+      var nextUrl = "http://chennakk.herokuapp.com/tamil/tracks/1/";
+      
+      if(this.state.nextUrl) {
+          nextUrl = this.state.nextUrl;
       }
      
-     VideoApi.getVideos(pageno)
+     VideoApi.getVideos(nextUrl)
         .then(function(resp) {
               if(resp) {
                   var tracks = self.state.tracks;
@@ -43,7 +45,7 @@ class InfiniteCardLoader extends Component {
                   if(resp.hasMoreItems) {
                       self.setState({
                           tracks: tracks,
-                          pageno: resp.page
+                          nextUrl: resp.nextUrl
                       });
                   } else {
                       self.setState({
