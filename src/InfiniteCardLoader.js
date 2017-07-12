@@ -27,7 +27,7 @@ class InfiniteCardLoader extends Component {
     loadItems(page) {
       var self = this;
 
-      var nextUrl = "http://chennakk.herokuapp.com/tamil/tracks/1/";
+      var nextUrl = "https://chennakk.herokuapp.com/tamil/tracks/1/";
       
       if(this.state.nextUrl) {
           nextUrl = this.state.nextUrl;
