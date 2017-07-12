@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Player } from 'video-react';
 import * as VideoApi from './VideoApi';
 import _ from 'lodash';
+import "../node_modules/video-react/dist/video-react.css"; 
 
 export default class MoviePlayer extends Component {
 
