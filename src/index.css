@@ -86,7 +86,10 @@ a {
     max-width: 64rem;
     padding: 2rem 6rem;
     margin: 0 auto;
-    font-size: 1.1rem; } }
+    min-height: 100vh;
+    font-size: 1.1rem; 
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    } }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .main-content {
@@ -128,7 +131,7 @@ a {
   .tracks {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
   }
   .track:nth-child(5n) {
     margin-right: 0;
@@ -150,7 +153,6 @@ a {
 .track {
   float: left;
   width: 400px;
-  margin-right: 15px;
 }
 .track img {
   width: 100%;

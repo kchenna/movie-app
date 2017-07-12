@@ -4,7 +4,9 @@ import qwest from 'qwest';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Card from './Card';
 import * as VideoApi from './VideoApi';
-
+import CircularProgress from 'material-ui/CircularProgress';
+import AppBar from 'material-ui/AppBar';
+import Divider from 'material-ui/Divider';
 
 class InfiniteCardLoader extends Component {
 
@@ -58,7 +60,21 @@ class InfiniteCardLoader extends Component {
 
   
   render() {
-        const loader = <div className="loader">Loading ...</div>;
+
+        const styles = {
+            flex :{
+                display : 'flex'
+            },
+            progress :{
+                margin :'0 auto'
+            },
+            top :{
+                marginTop:'10px'
+            }
+        }
+
+
+        const loader = <div style={styles.flex}><CircularProgress style={styles.progress}/></div>;
 
         var items = [];
         this.state.tracks.map((track, i) => {
@@ -68,20 +84,25 @@ class InfiniteCardLoader extends Component {
                 key={i} 
                 router={this.props.router} 
                 setSelectedTrack={this.props.setSelectedTrack} ></Card>
+
             );
         });
 
         return (
               <section className="main-content">
-                <InfiniteScroll
-                    pageStart={0}
-                    loadMore={this.loadItems.bind(this)}
-                    hasMore={this.state.hasMoreItems}
-                    loader={loader}>
-                    <div className="tracks">
-                        {items}
-                    </div>
-                </InfiniteScroll>
+                  <AppBar
+                    title="Hello"/>
+                   <div style={styles.top}>
+                    <InfiniteScroll
+                        pageStart={0}
+                        loadMore={this.loadItems.bind(this)}
+                        hasMore={this.state.hasMoreItems}
+                        loader={loader}>
+                        <div className="tracks">
+                            {items}
+                        </div>
+                    </InfiniteScroll>
+               </div>
               </section>
         );
     }

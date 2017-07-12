@@ -19,7 +19,7 @@ export default class MoviePlayer extends Component {
         };
   }
 
-  componentDidMount(){
+  componentWillMount(){
     var self = this;
     var metadata = _.find(this.props.track.movieLinkMetadata, 
                     function(meta){ return meta.default === "true" });
@@ -29,11 +29,9 @@ export default class MoviePlayer extends Component {
         this.props.track.baseUrl)
         .then(function(resp) {
               if(resp) {
-                  console.log("resp ",resp);
                   self.setState({
                           url: resp
                         });
-                  
               }
         }
     );
