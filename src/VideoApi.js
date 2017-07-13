@@ -14,7 +14,7 @@ export const getVideos = (url) =>{
 
 export const getMovieUrl = (playUrl,referredUrl) =>{
 
-    var request = new Request('https://chennakk.herokuapp.com/tamil/movie', {
+    var request = new Request('http://spsenthil.com:8080/movie/tamil/source', {
 	method: 'POST', 
 	mode: 'cors',
     headers: new Headers({'content-type': 'application/json'}),
