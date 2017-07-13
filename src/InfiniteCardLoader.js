@@ -29,7 +29,7 @@ class InfiniteCardLoader extends Component {
     loadItems(page) {
       var self = this;
 
-      var nextUrl = "https://chennakk.herokuapp.com/tamil/tracks/1/";
+      var nextUrl = "http://spsenthil.com:8080/movie/tamil/metadata/1/";
       
       if(this.state.nextUrl) {
           nextUrl = this.state.nextUrl;
